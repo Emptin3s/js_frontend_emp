@@ -10,7 +10,7 @@ class ToDoTaskAddInner extends React.Component {
 		
 		this.state = {
 			name: '',
-			decription: ''
+			description: ''
 		}
 		
 		this.onNameChange = this.onNameChange.bind(this);
@@ -31,7 +31,7 @@ class ToDoTaskAddInner extends React.Component {
 		e.preventDefault();
 		
 		this.setState({
-			description: e.target.value
+			description: String(e.target.value)
 		});
 	}
 
@@ -40,7 +40,7 @@ class ToDoTaskAddInner extends React.Component {
 		
 		fetch('tasks', {method: 'POST', body: JSON.stringify({
 			name: this.state.name,
-			description: this.state.description
+			description: this.state.description,
 		}),
 		headers: {
 			'Content-Type': 'application/json'
@@ -66,6 +66,8 @@ class ToDoTaskAddInner extends React.Component {
 					<div className="widget-content">
 						<div className="widget-content-wrapper">
 							<input type="text" value={this.state.name} onChange={this.onNameChange} placeholder='Name' className="form-control"/>
+						</div>
+						<div className="widget-content-wrapper2">
 							<input type="text" value={this.state.description} onChange={this.onDescriptionChange} placeholder='Description' className="form-control"/>
 							<input type="submit" value="Add" className="btn btn-primary"/>
 						</div>
